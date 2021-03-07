@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { EventsComponent } from './events/events.component';
+import { EventComponent } from './event/event.component';
 
 var config = {
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,7 +24,9 @@ var config = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EventsComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
