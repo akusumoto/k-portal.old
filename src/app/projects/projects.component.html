@@ -1,0 +1,13 @@
+<p>projects works!</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Detail</th>
+    </tr>
+    <tr *ngFor="let project of projects">
+        <td>{{project.name}}</td>
+        <td>{{project.date}}</td>
+        <td>{{project.detail}}</td>
+    </tr>
+</table>
