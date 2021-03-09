@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { EventComponent } from './event/event.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
+import { AuthComponent } from './auth/auth.component';
 
 var config = {
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -30,7 +31,8 @@ var config = {
     EventsComponent,
     EventComponent,
     ProjectsComponent,
-    ProjectComponent
+    ProjectComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
