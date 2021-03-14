@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Project } from 'src/app/project';
+import { ProjectService } from '../project.service';
+import { tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-projects',
@@ -8,22 +11,11 @@ import { Project } from 'src/app/project';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  projects:Project[] = [];
+  projects$ = this.projectService.getProjects().pipe(tap((data) => console.log(data)));
 
-  constructor(private fs:AngularFirestore) { }
+  constructor(private projectService:ProjectService) { }
 
-  ngOnInit(): void {
-    this.fs.collection<Project>('projects')
-      .valueChanges()
-      .subscribe((projects) => {
-        if(projects != null){
-          this.projects = projects;
-        }
-      },
-      error => {
-        this.projects = null;
-      })
-
+  ngOnInit(): void {  
   }
 
 }
