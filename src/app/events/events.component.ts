@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { tap } from 'rxjs/operators';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-events',
@@ -7,25 +8,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events:any;
+  events$ = this.eventService.getEvents().pipe(tap((data) => console.log(data)));
   raw:string;
 
-  constructor(private fs:AngularFirestore) { }
+  constructor(private eventService:EventService) { }
 
   ngOnInit(): void {
-    this.events = [];
-    this.fs.collection('events')
-      .valueChanges()
-      .subscribe((events) => {
-        if(events != null){
-          this.events = events;
-          this.raw = JSON.stringify(events);
-        }
-      },
-      error => {
-        this.events = null;
-      })
-
   }
 
 }

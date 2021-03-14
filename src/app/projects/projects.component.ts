@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Project } from 'src/app/project';
 
 @Component({
   selector: 'app-projects',
@@ -7,13 +8,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  projects:any;
+  projects:Project[] = [];
 
   constructor(private fs:AngularFirestore) { }
 
   ngOnInit(): void {
-    this.projects = [];
-    this.fs.collection('projects')
+    this.fs.collection<Project>('projects')
       .valueChanges()
       .subscribe((projects) => {
         if(projects != null){
